@@ -231,6 +231,7 @@ public class JobScheduleHelper {
                             // 因为读到了数据，不知道接下来还有没有数据，这里为了赶工确保满足条件的定时任务能快速被执行。
                             // 如果读不到数据，休眠 （5 - （System.currentTimeMillis()%1000））秒，这里最大休眠5秒，最小休眠4秒
                             // 因为已经读不到数据了，多休息一下，让定时器等到需要被执行的时间点
+
                             TimeUnit.MILLISECONDS.sleep((preReadSuc?1000:PRE_READ_MS) - System.currentTimeMillis()%1000);
                         } catch (InterruptedException e) {
                             if (!scheduleThreadToStop) {
